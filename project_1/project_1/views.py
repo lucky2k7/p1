@@ -28,3 +28,7 @@ def home_page(request):
         'edata':[8440823412, 9680888975]
     }
     return render(request, "index.html", data)
+def tokyo(request):
+    return render(request, "tokyo.html")
+def newyork(request):
+    return render(request, "newyork.html")

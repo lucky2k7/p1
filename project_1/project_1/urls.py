@@ -26,4 +26,6 @@ urlpatterns = [
     # path("course/<str:coursename>",views.course_details),
     path('course/<slug:course_details>',views.course_details),
     path("",views.home_page),
+    path("tokyo",views.tokyo),
+    path("newyork",views.newyork),
 ]
