@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    
+    {% comment %} <form method="GET", action = ""> {% endcomment %}
+    <form method="POST", action = "">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="Name">Name:</label>
+            <input class="form-control" id="name" value ="{{name}}"  name="name" > 
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="" class="form-control" id="email" value= "{{email}}" name="email" >
+        </div>
+        
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+</div>
+
+
+{% endblock content %}
+
+

@@ -1,7 +1,22 @@
+
 <nav>
     <ul>
-        <a href="/">London</a>
+        {% comment %} <a href="/">London</a>
         <a href="/tokyo">Tokyo</a>
-        <a href="/newyork">Newyork</a>
+        <a href="/newyork">Newyork</a> {% endcomment %}
+        {% comment %} {% if request.path == '/' %} active  {% endif %} {% endcomment %}
+        
+
+        {% comment %} <li><a href="{% url "home" %}" class=" {% if request.path == '/' %} active  {% endif %} ">London</a></li>
+        <li><a href="{% url "tokyo" %}" class=" {% if request.path == '/tokyo' %} active  {% endif %} ">Tokyo</a></li>
+            <li><a href="{% url "newyork" %}" class=" {% if request.path == '/newyork' %} active  {% endif %} ">Newyork</a></li> {% endcomment %}
+            
+        <li><a href="{% url "home" %}" class=" {% if request.path == '/' %} active  {% endif %} ">London</a></li>
+        {% url "tokyo" as url_name %}
+        <li><a href={{url_name}} class=" {% if request.path == url_name %} active  {% endif %} ">Tokyo</a></li>
+        <li><a href="{% url "newyork" %}" class=" {% if request.path == '/newyork' %} active  {% endif %} ">Newyork</a></li>
+
+        {% url "userinput" as url %}
+        <li><a href={{url}} class=" {% if request.path == url %} active  {% endif %} ">userinput</a></li>
     </ul>
 </nav>

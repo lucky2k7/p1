@@ -21,11 +21,12 @@ from project_1 import views
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("about-us/",views.aboutUs),
-    path("contect/",views.contect),
+    path("contect/",views.contect, name="contect"),
     path("course/<int:courseid>",views.course_details),
     # path("course/<str:coursename>",views.course_details),
     path('course/<slug:course_details>',views.course_details),
-    path("",views.home_page),
-    path("tokyo",views.tokyo),
-    path("newyork",views.newyork),
+    path("",views.home_page, name = "home"),
+    path("tokyo",views.tokyo, name="tokyo"),
+    path("newyork",views.newyork, name="newyork"),
+    path("userinput",views.user_input, name="userinput"),
 ]
