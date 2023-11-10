@@ -3,7 +3,7 @@
 <div class="container">
     
     {% comment %} <form method="GET", action = ""> {% endcomment %}
-    <form method="POST", action = "">
+    <form method="POST", action = "{% url "submitform" %}">
         {% csrf_token %}
         <div class="form-group">
             <label for="Name">Name:</label>

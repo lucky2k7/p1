@@ -29,4 +29,6 @@ urlpatterns = [
     path("tokyo",views.tokyo, name="tokyo"),
     path("newyork",views.newyork, name="newyork"),
     path("userinput",views.user_input, name="userinput"),
+    path("submitform",views.submitform, name="submitform"),
+    path("user-form",views.UserForms, name="UserForm"),
 ]

@@ -1,5 +1,6 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
+from .form import UserForm
 
 def aboutUs(request):
     return HttpResponse("welcome to about us page")
@@ -18,8 +19,8 @@ def course_details(request, course_details):
 
 def home_page(request):
     result = None
-    if request.method=="GET":
-        result = request.GET['result']
+    # if request.method=="GET":
+    #     result = request.GET['result']
     # print(result)
     data = {
         "title":"Home",
@@ -32,8 +33,8 @@ def home_page(request):
         # 'edata':[8440823412, 9680888975],
         "content":"London, the capital of England and the United Kingdom, is a 21st-century city with history stretching back to Roman times. At its centre stand the imposing Houses of Parliament, the iconic ‘Big Ben’ clock tower and Westminster Abbey, siteof British monarch coronations. Across the Thames River, the London Eye observation wheel provides panoramic views of the South Bank cultural complex, and the entire city."
     }
-    if(result != None):
-        data["result"]=result
+    # if(result != None):
+    #     data["result"]=result
     # print(data['result'])
     return render(request, "index.html", data)
 def tokyo(request):
@@ -57,15 +58,17 @@ def user_input(request):
         #     email = request.GET['email']
             # name = request.GET.get('name')
             # email = request.GET
-            # print(request.GET)
+            print(request.GET)
             # print(name)
             pass    
         elif request.method=="POST":
             name = request.POST.get('name')
             email = request.POST.get('email')
-            print(name)
+            print(request.POST)
             url = "/?result={}".format("you-redirected-from-userinput-page")
             url = "/?result=you-redirected-from-userinput-page"
+            if(name == "" or email == ""):
+                return HttpResponseRedirect("/userinput")
             return HttpResponseRedirect(url)
 
         data = {
@@ -80,4 +83,16 @@ def user_input(request):
     if len(data)==0:
         return render(request,"userinput.html")
     else:
-        return render(request,"userinput.html", data)
+        return render(request,"userinput.html", data) 
+
+def submitform(request):
+    # return HttpResponse(request)
+    # return render(request, "userinput.html")
+    return HttpResponseRedirect("/")
+
+def UserForms(request):
+    fn = UserForm()
+    data = {
+        'form':fn,
+    }
+    return render(request, "UserForm.html", data)    
