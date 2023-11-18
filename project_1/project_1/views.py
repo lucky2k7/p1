@@ -1,6 +1,7 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from .form import UserForm
+from .form import subjects
 
 def aboutUs(request):
     return HttpResponse("welcome to about us page")
@@ -96,3 +97,45 @@ def UserForms(request):
         'form':fn,
     }
     return render(request, "UserForm.html", data)    
+
+def marksheet(request):
+    try:
+        if request.method=="POST":
+            if request.POST.get('subject1')=="":
+                data = {
+                    'error':True,
+                    'subjects':subjects(),
+                }
+                return render(request,'marksheet.html',data)
+            s1 = eval(request.POST.get('subject1'))
+            s2 = eval(request.POST.get('subject2'))
+            s3 = eval(request.POST.get('subject3'))
+            s4 = eval(request.POST.get('subject4'))
+            s5 = eval(request.POST.get('subject5'))
+            s6 = eval(request.POST.get('subject6'))
+
+            t = s1+s2+s3+s4+s5+s6
+            p = t*100/600
+            if p >=60:
+                g = 'First Devision'
+            elif p >=50:
+                g = 'Second Devision'
+            elif p >=33:
+                g = 'Thired Devision'
+            else:
+                g = "Fail"
+            data = {
+                'total':t,
+                'percent':p,
+                'grade':g,
+                'subjects':subjects(),
+            }
+            # print(data)
+            return render(request, 'marksheet.html', data)
+    except:
+        pass
+    data = {
+        'subjects':subjects(),
+    }
+    print(data)
+    return render(request, 'marksheet.html',data)

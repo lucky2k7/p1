@@ -20,5 +20,9 @@
         <li><a href={{url}} class=" {% if request.path == url %} active  {% endif %} ">userinput</a></li>
         {% url "UserForm" as url %}
         <li><a href={{url}} class=" {% if request.path == url %} active  {% endif %} ">User Form</a></li>
+
+        {% url "marksheet" as url %}
+        <li><a href={{url}} class=" {% if request.path == url %} active  {% endif %} ">Marksheet</a></li>
+
     </ul>
 </nav>

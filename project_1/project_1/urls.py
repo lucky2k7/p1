@@ -31,4 +31,5 @@ urlpatterns = [
     path("userinput",views.user_input, name="userinput"),
     path("submitform",views.submitform, name="submitform"),
     path("user-form",views.UserForms, name="UserForm"),
+    path('marksheet', views.marksheet, name='marksheet'),
 ]
