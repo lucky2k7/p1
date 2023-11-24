@@ -15,6 +15,7 @@
         {% url "tokyo" as url_name %}
         <li><a href={{url_name}} class=" {% if request.path == url_name %} active  {% endif %} ">Tokyo</a></li>
         <li><a href="{% url "newyork" %}" class=" {% if request.path == '/newyork' %} active  {% endif %} ">Newyork</a></li>
+        
 
         {% url "userinput" as url %}
         <li><a href={{url}} class=" {% if request.path == url %} active  {% endif %} ">userinput</a></li>

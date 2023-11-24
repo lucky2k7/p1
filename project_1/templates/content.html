@@ -1,11 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
-
+{% for city in citydata %}
     <article >
-        <h3>{{title}}</h3>
-         <p>{{content}}</p>
-        <p>{{ result }}</p> 
+        <h3>{{city.city_tital}}</h3>
+         <p>{{city.city_description  | upper | safe  | slice:5}}</p>
+        
     </article >
+{% endfor %}
     
 
 {% endblock content %}

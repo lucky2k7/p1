@@ -2,6 +2,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from .form import UserForm
 from .form import subjects
+from city.models import City
 
 def aboutUs(request):
     return HttpResponse("welcome to about us page")
@@ -39,16 +40,31 @@ def home_page(request):
     # print(data['result'])
     return render(request, "index.html", data)
 def tokyo(request):
-    data = {
-        "title" : "tokyo",
-        "content":"Tokyo, Japan’s busy capital, mixes the ultramodern and the traditional, from neon-lit skyscrapers to historic temples. The opulent Meiji Shinto Shrine is known for its towering gate and surrounding woods. The Imperial Palace sits amid large public gardens. The city's many museums offer exhibits ranging from classical art (in the Tokyo National Museum) to a reconstructed kabuki theater (in the Edo-Tokyo Museum)."
-    }
+    city_data = City.objects.all()
+    for city in city_data:
+        if city.city_tital == "tokyo":
+            data = {
+                'title':city.city_tital,
+                'content':city.city_description
+            }
+    # data = {
+    #     "title" : "tokyo",
+    #     "content":"Tokyo, Japan’s busy capital, mixes the ultramodern and the traditional, from neon-lit skyscrapers to historic temples. The opulent Meiji Shinto Shrine is known for its towering gate and surrounding woods. The Imperial Palace sits amid large public gardens. The city's many museums offer exhibits ranging from classical art (in the Tokyo National Museum) to a reconstructed kabuki theater (in the Edo-Tokyo Museum)."
+    # }
     return render(request, "content.html", data)
 def newyork(request):
-    data = {
-        "title" : "New York",
-        "content":"New York City comprises 5 boroughs sitting where the Hudson River meets the Atlantic Ocean. At its core is Manhattan, a densely populated borough that’s among the world’s major commercial, financial and cultural centers. Its iconic sites include skyscrapers such as the Empire State Building and sprawling Central Park. Broadway theater is staged in neon-lit Times Square."
-    }
+    citydata = City.objects.all()
+    print(citydata)
+    for i in citydata:
+        if i.city_tital == "New York":
+            data = {
+                'title':i.city_tital,
+                'content':i.city_description,
+            }
+    # data = {
+    #     "title" : "New York",
+    #     "content":"New York City comprises 5 boroughs sitting where the Hudson River meets the Atlantic Ocean. At its core is Manhattan, a densely populated borough that’s among the world’s major commercial, financial and cultural centers. Its iconic sites include skyscrapers such as the Empire State Building and sprawling Central Park. Broadway theater is staged in neon-lit Times Square."
+    # }
     return render(request, "newyork.html",data)
 
 def user_input(request):
@@ -139,3 +155,12 @@ def marksheet(request):
     }
     print(data)
     return render(request, 'marksheet.html',data)
+
+def display(request):
+    citydata = City.objects.all().order_by('id')[0:2]
+    data = {
+        'citydata': citydata,
+    }
+
+    return render(request, "content.html", data)
+
