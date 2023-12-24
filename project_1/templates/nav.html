@@ -1,4 +1,8 @@
-
+<marquee onmouseover="stop()" onmouseout="start()">
+    {% for city in city_data  %}
+       <a href="/city_detail/{{city.id}}" > {{city.city_tital}}</a> &nbsp;
+    {% endfor %}
+</marquee>
 <nav>
     <ul>
         {% comment %} <a href="/">London</a>

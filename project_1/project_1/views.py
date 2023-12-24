@@ -21,11 +21,13 @@ def course_details(request, course_details):
 
 def home_page(request):
     result = None
+    city_data = City.objects.all()
     # if request.method=="GET":
     #     result = request.GET['result']
     # print(result)
     data = {
         "title":"Home",
+        'city_data':city_data,
         # "bdata": "lakhan saini",
         # "cdata":["lakhan","saini"],
         # "ddata" : [
@@ -164,3 +166,11 @@ def display(request):
 
     return render(request, "content.html", data)
 
+def city_detail(request,id):
+    single_city_data = City.objects.get(id=id)
+    all_city_data = City.objects.all()
+    data = {
+        'single_city_data': single_city_data,
+        'city_data': all_city_data,
+    }
+    return render(request, 'news_details.html',data)

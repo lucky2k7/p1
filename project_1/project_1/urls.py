@@ -32,5 +32,6 @@ urlpatterns = [
     path("submitform",views.submitform, name="submitform"),
     path("user-form",views.UserForms, name="UserForm"),
     path('marksheet', views.marksheet, name='marksheet'),
-    path('display_city',views.display, name='display_city')
+    path('display_city',views.display, name='display_city'),
+    path('city_detail/<int:id>',views.city_detail)
 ]
